@@ -8,4 +8,5 @@ fn main() {
     stdin()
         .read_line(&mut your_name)
         .expect("Failed to read line");
+    println!("Hello, {}", your_name);
 }
