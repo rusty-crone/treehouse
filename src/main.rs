@@ -2,21 +2,40 @@
 
 use std::io::stdin;
 
-fn main() {
-    println!("Hello, what's your name?");
-    let name = what_is_your_name();
-    let visitor_list = ["jason", "brad", "andr\u{e9}"];
-    let mut allow_them_in = false;
-    for visitor in &visitor_list {
-        if visitor == &name {
-            allow_them_in = true;
+struct Visitor {
+    name: String,
+    greeting: String,
+}
+
+impl Visitor {
+    fn new(name: &str, greeting: &str) -> Self {
+        Self {
+            name: name.to_lowercase(),
+            greeting: greeting.to_string(),
         }
     }
 
-    if allow_them_in {
-        println!("Hello, {:?}", name);
-    } else {
-        println!("You are not in the club {}", name);
+    fn greet_visitor(&self) {
+        println!("{}", self.greeting);
+    }
+}
+
+fn main() {
+    println!("Hello, what's your name?");
+    let name = what_is_your_name();
+    let visitor_list = [
+        Visitor::new("jason", "Hey Jason, WASSUUUP!"),
+        Visitor::new("brad", "Wake up bro, time to feed the baby!"),
+        Visitor::new("andr\u{e9}", "Golang would be better, right?"),
+    ];
+
+    let known_visitor = visitor_list
+        .iter()
+        .find(|visitor| visitor.name == name);
+
+    match known_visitor {
+        Some(visitor) => visitor.greet_visitor(),
+        None => println!("You not in the club")
     }
 }
 
