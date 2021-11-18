@@ -27,6 +27,7 @@ fn main() {
         Visitor::new("jason", "Hey Jason, WASSUUUP!"),
         Visitor::new("brad", "Wake up bro, time to feed the baby!"),
         Visitor::new("andr\u{e9}", "Golang would be better, right?"),
+        Visitor::new("sierra", "Hey what's going on yo?"),
     ];
 
     let known_visitor = visitor_list
@@ -35,7 +36,7 @@ fn main() {
 
     match known_visitor {
         Some(visitor) => visitor.greet_visitor(),
-        None => println!("You not in the club")
+        None => println!("You are not in the club")
     }
 }
 
